@@ -1,0 +1,64 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabbar/base/base",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+	    ,{
+            "path" : "pages/basics/QS-input/QS-input",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-radio/QS-radio",
+            "style" : {}
+        }
+		,{
+		    "path" : "pages/basics/QS-checkbox/QS-checkbox",
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/basics/QS-textarea/QS-textarea",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-picker-date/QS-picker-date",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-picker-city/QS-picker-city",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-picker-custom/QS-picker-custom",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-picker-custom2/QS-picker-custom2",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-pics/QS-pics",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-infinitePics/QS-infinitePics",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/QS-switch/QS-switch",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/basics/basicsDemo/basicsDemo",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

@@ -1,41 +1,112 @@
 <template>
-	<view class="content">
-        <image class="logo" src="../../static/logo.png"></image>
-		<view>
-            <text class="title">{{title}}</text>
+  <view :class="[isDark ? 'dark' : 'light']">
+    <search-result-page
+      keyword=""
+      titleProp="首页"
+      :scrollTopProp="scrollTop"
+      :pullDownRefreshProp="pullDownRefreshCount"
+      :reachBottomProp="reachBottomCount"
+      v-if="PageCur == 'index'"
+    ></search-result-page>
+    555555555 {{ reachBottomCount }}
+    <messages-page v-if="PageCur == 'message'"></messages-page>
+    <user-page v-if="PageCur == 'user'"></user-page>
+    <!-- <navigator url="../add-queue/index" open-type="navigate"> -->
+    <navigator url="../add-queue/add-queue" open-type="navigate">
+      <image src="../../static/images/add.png" class="image" />
+    </navigator>
+    <!-- <view class="cu-bar tabbar bg-white shadow foot">
+      <view class="action" @tap="NavChange" data-cur="index">
+        <view class="cuIcon-cu-image">
+          <image
+            :src="
+              PageCur == 'index'
+                ? '/static/images/tabbar/home-active.png'
+                : '/static/images/tabbar/home.png'
+            "
+          ></image>
         </view>
-	</view>
+        <view :class="PageCur == 'index' ? 'text-blue' : 'text-gray'">
+          首页
+        </view>
+      </view>
+      <view class="action" @tap="NavChange" data-cur="message">
+        <view class="cuIcon-cu-image">
+          <image
+            :src="
+              PageCur == 'message'
+                ? '/static/images/tabbar/message-active.png'
+                : '/static/images/tabbar/message.png'
+            "
+          ></image>
+        </view>
+        <view :class="PageCur == 'message' ? 'text-blue' : 'text-gray'">
+          消息
+        </view>
+      </view>
+      <view class="action" @tap="NavChange" data-cur="user">
+        <view class="cuIcon-cu-image">
+          <image
+            :src="
+              PageCur == 'user'
+                ? '/static/images/tabbar/me-active.png'
+                : '/static/images/tabbar/me.png'
+            "
+          ></image>
+        </view>
+        <view :class="PageCur == 'user' ? 'text-blue' : 'text-gray'">
+          我的
+        </view>
+      </view>
+    </view> -->
+  </view>
 </template>
-
 <script lang="ts">
-    import Vue from 'vue';
-	export default Vue.extend({
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
+import { Vue, Component } from "vue-property-decorator";
+import searchResultPage from "@/pages/search-result/search-result.vue";
 
-		},
-		methods: {
+import messagesPage from "@/pages/message/message.vue";
 
-		}
-	});
+import userPage from "@/pages/user/user.vue";
+@Component({
+  components: { searchResultPage, messagesPage, userPage },
+})
+export default class extends Vue {
+  scrollTop = 0;
+  PageCur = "index";
+  pullDownRefreshCount = 0;
+  reachBottomCount = 0;
+  get isDark(): boolean {
+    return this.$store.state.others.isDark;
+  }
+  onPageScroll(e: any) {
+    this.scrollTop = e.scrollTop;
+  }
+  onPullDownRefresh() {
+    console.log(this.$data);
+    this.$data.pullDownRefreshCount++;
+    // searchResult.setItemList("top");
+  }
+  onReachBottom() {
+    console.log(this.$data);
+    this.$data.reachBottomCount++;
+  }
+  NavChange(e: any) {
+    console.log(e);
+    this.$data.PageCur = e.currentTarget.dataset.cur;
+  }
+}
 </script>
 
-<style>
-	.content {
-		text-align: center;
-		height: 400upx;
-	}
-    .logo{
-        height: 200upx;
-        width: 200upx;
-        margin-top: 200upx;
-    }
-	.title {
-		font-size: 36upx;
-		color: #8f8f94;
-	}
+<style lang="scss" scoped>
+.cuIcon-cu-image {
+  line-height: 1;
+}
+.image {
+  position: fixed;
+  bottom: 130rpx;
+  width: 76rpx;
+  height: 76rpx;
+  right: 20rpx;
+}
 </style>

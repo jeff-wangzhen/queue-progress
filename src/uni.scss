@@ -21,32 +21,46 @@ $uni-color-warning: #f0ad4e;
 $uni-color-error: #dd524d;
 
 /* 文字基本颜色 */
-$uni-text-color:#333;//基本色
-$uni-text-color-inverse:#fff;//反色
-$uni-text-color-grey:#999;//辅助灰色，如加载更多的提示信息
+$uni-text-color: #333; //基本色
+$uni-text-color-inverse: #fff; //反色
+$uni-text-color-grey: #999; //辅助灰色，如加载更多的提示信息
 $uni-text-color-placeholder: #808080;
-$uni-text-color-disable:#c0c0c0;
+$uni-text-color-disable: #c0c0c0;
+$my-text-color-light: #333;
+$my-text-color-dark: rgb(213, 213, 213);
 
 /* 背景颜色 */
-$uni-bg-color:#ffffff;
-$uni-bg-color-grey:#f8f8f8;
-$uni-bg-color-hover:#f1f1f1;//点击状态颜色
-$uni-bg-color-mask:rgba(0, 0, 0, 0.4);//遮罩颜色
-
+$uni-bg-color: #ffffff;
+$uni-bg-color-grey: rgb(204, 232, 207);
+// $uni-bg-color-grey: #f8f8f8;
+$uni-bg-color-hover: #f1f1f1; //点击状态颜色
+$uni-bg-color-mask: rgba(0, 0, 0, 0.4); //遮罩颜色
+$my-bg-color-dark: rgb(25, 25, 25);
+$my-bg-color-light: rgb(255, 255, 255);
+$my-view-bg-color-light-hover: rgb(230, 230, 230);
+$my-view-bg-color-dark-hover: rgb(45, 45, 45);
+$my-view-bg-color-dark: rgb(38, 38, 38);
+$my-view-bg-color-light-from: rgb(210, 210, 210);
+$my-view-bg-color-light-to: rgb(230, 230, 230);
+$my-view-bg-color-dark-from: rgb(20, 20, 20);
+$my-view-bg-color-dark-to: rgb(30, 30, 30);
+$my-input-bg-color-light: rgb(242, 242, 242);
+$my-input-bg-color-dark: rgb(42, 42, 42);
 /* 边框颜色 */
-$uni-border-color:#c8c7cc;
-
+$uni-border-color: #c8c7cc;
+$my-border-color-light: #b2b2b2;
+$my-border-color-dark: #555;
 /* 尺寸变量 */
 
 /* 文字尺寸 */
-$uni-font-size-sm:24upx;
-$uni-font-size-base:28upx;
-$uni-font-size-lg:32upx;
+$uni-font-size-sm: 24upx;
+$uni-font-size-base: 28upx;
+$uni-font-size-lg: 32upx;
 
 /* 图片尺寸 */
-$uni-img-size-sm:40upx;
-$uni-img-size-base:52upx;
-$uni-img-size-lg:80upx;
+$uni-img-size-sm: 40upx;
+$uni-img-size-base: 52upx;
+$uni-img-size-lg: 80upx;
 
 /* Border Radius */
 $uni-border-radius-sm: 4upx;
@@ -68,9 +82,9 @@ $uni-spacing-col-lg: 24upx;
 $uni-opacity-disabled: 0.3; // 组件禁用态的透明度
 
 /* 文章场景相关 */
-$uni-color-title: #2C405A; // 文章标题颜色
-$uni-font-size-title:40upx;
+$uni-color-title: #2c405a; // 文章标题颜色
+$uni-font-size-title: 40upx;
 $uni-color-subtitle: #555555; // 二级标题颜色
-$uni-font-size-subtitle:36upx;
-$uni-color-paragraph: #3F536E; // 文章段落颜色
-$uni-font-size-paragraph:30upx;
+$uni-font-size-subtitle: 36upx;
+$uni-color-paragraph: #3f536e; // 文章段落颜色
+$uni-font-size-paragraph: 30upx;

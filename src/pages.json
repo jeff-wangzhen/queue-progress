@@ -1,16 +1,131 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "队列列表",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/add-queue/add-queue",
+      "style": {
+        "navigationBarTitleText": "创建队列"
+      }
+    },
+    {
+      "path": "pages/index/bar",
+      "style": {
+        "navigationBarTitleText": "2"
+      }
+    },
+    {
+      "path": "pages/add-queue/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/search-result/search-result",
+      "style": {
+        "navigationBarTitleText": "搜索结果"
+      }
+    },
+    {
+      "path": "pages/queue-information/queue-information",
+      "style": {
+        "navigationBarTitleText": "队列详情"
+      }
+    },
+    {
+      "path": "pages/message/message",
+      "style": {
+        "navigationBarTitleText": "消息"
+      }
+    },
+    {
+      "path": "pages/message/chat",
+      "style": {
+        "navigationBarTitleText": "聊天"
+      }
+    },
+    {
+      "path": "pages/user/user",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/user/user-info",
+      "style": {
+        "navigationBarTitleText": "我的信息"
+      }
+    },
+    {
+      "path": "pages/user/about",
+      "style": {
+        "navigationBarTitleText": "关于"
+      }
+    },
+    {
+      "path": "pages/user/feedback",
+      "style": {
+        "navigationBarTitleText": "意见反馈",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/user/created-queue-list",
+      "style": {
+        "navigationBarTitleText": "我创建的队列",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/user/joined-queue-list",
+      "style": {
+        "navigationBarTitleText": "我加入的队列",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/message/check",
+      "style": {
+        "navigationBarTitleText": "审核"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#eee",
+    "backgroundColor": "#eee"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#4fc3f7",
+    "borderStyle": "black",
+    "backgroundColor": "#eee",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "static/images/tabbar/message.png",
+        "selectedIconPath": "static/images/tabbar/message-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "static/images/tabbar/me.png",
+        "selectedIconPath": "static/images/tabbar/me-active.png"
+      }
+    ]
+  }
 }
