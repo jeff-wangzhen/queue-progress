@@ -67,7 +67,7 @@ async function main(params) {
     } else {
       res = { ...res,
         code: -1,
-        msg: 'add'
+        msg: '操作失败'
       }
     }
   }

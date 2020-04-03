@@ -177,7 +177,7 @@ export default {
     pickerChange(e) {
       const value = e.detail.value;
       let timeArr = value.map((v, i) => {
-        return this.dateTimeArr[i][v];
+        return this.dateTimeArr[i][v] || 0;
       });
 
       const selectTime = this.getDateTimeValue(timeArr);
