@@ -18,8 +18,9 @@
 
 &emsp;&emsp;倘若有幸得诸位认可，心存感激，将来得空，可能继续完善。
 
-&emsp;&emsp;我也发布了微信小程序：![排队进度](https://raw.githubusercontent.com/kill370354/queue-progress/master/static/images/queue-progress-wx.jpg "排队进度")
+&emsp;&emsp;微信小程序：![排队进度](https://raw.githubusercontent.com/kill370354/queue-progress/master/static/images/queue-progress-wx.jpg "排队进度")
 
-&emsp;&emsp;源代码： [github](https://github.com/kill370354/queue-progress)
+&emsp;&emsp;[github 源代码](https://github.com/kill370354/queue-progress/)
+&emsp;&emsp;[H5 打包成品](https://kill370354.github.io/queue-progress/)
 
 <p align="right">2020 年 4 月初</p>
