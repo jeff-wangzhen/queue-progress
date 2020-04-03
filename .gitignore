@@ -1,0 +1,6 @@
+cloudfunctions-aliyun/*
+/cloudfunctions-dev/node_modules
+/cloudfunctions-dev/package-lock.json
+# /cloudfunctions-dev/src/utils/constants.js
+/unpackage
+# manifest.json
