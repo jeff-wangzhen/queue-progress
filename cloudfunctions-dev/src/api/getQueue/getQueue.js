@@ -29,20 +29,20 @@ async function getJoined(queryParams, hasMore) {
       time: 1,
       queueState: "$queue.state",
       title: "$queue.title"
-    })
+    }).unwind('$number').unwind('$title').unwind('$queueState').unwind('$maxPeopleCount')
 
 
     .sort({
       time: -1
     }).limit(queryParams.length).end();
   queues = queues.data
-  queues = queues && queues.map(item => {
-    item.title = item.title[0]
-    item.queueState = item.queueState[0]
-    item.number = item.number[0]
-    item.maxPeopleCount = item.maxPeopleCount[0]
-    return item
-  })
+  // queues = queues && queues.map(item => {
+  //   item.title = item.title[0]
+  //   item.queueState = item.queueState[0]
+  //   item.number = item.number[0]
+  //   item.maxPeopleCount = item.maxPeopleCount[0]
+  //   return item
+  // })
 
 
   for (let i = 0; i < (queues && queues.length) || 0; i++) {
@@ -98,7 +98,7 @@ async function getWatched(queryParams, hasMore) {
     time: 1,
     queueState: "$queue.state",
     title: "$queue.title"
-  }).sort({
+  }).unwind('$number').unwind('$title').unwind('$queueState').unwind('$maxPeopleCount').sort({
     time: -1
   }).limit(queryParams.length).end();
 
@@ -149,7 +149,7 @@ async function getCreated(queryParams, hasMore) {
     time: 1,
     queueState: "$queue.state",
     title: "$queue.title"
-  }).sort({
+  }).unwind('$number').unwind('$title').unwind('$queueState').unwind('$maxPeopleCount').sort({
     queueId: -1
   }).limit(queryParams.length).end();
   queues = await getPersonNum(queues, true)
@@ -181,13 +181,13 @@ async function getCreated(queryParams, hasMore) {
 async function getPersonNum(queues, needMap) {
   queues = queues.data
   if (needMap) {
-    queues = queues && queues.map(item => {
-      item.title = item.title[0]
-      item.queueState = item.queueState[0]
-      item.number = item.number[0]
-      item.maxPeopleCount = item.maxPeopleCount[0]
-      return item
-    })
+    // queues = queues && queues.map(item => {
+    //   item.title = item.title[0]
+    //   item.queueState = item.queueState[0]
+    //   item.number = item.number[0]
+    //   item.maxPeopleCount = item.maxPeopleCount[0]
+    //   return item
+    // })
   }
 
   let queuesId = queues && queues.map(item => item.queueId)
