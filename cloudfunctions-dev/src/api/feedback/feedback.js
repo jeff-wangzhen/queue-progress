@@ -14,6 +14,10 @@ async function main(params) {
       creator,
       contactWay
     } = params
+    if (content.trim() === '') {
+      res.msg = '内容不能为空'
+      return res;
+    }
     dataRes = await db.collection('feedback').add({
       content,
       creator,
@@ -27,19 +31,25 @@ async function main(params) {
 
     dataRes = await db.collection('feedback').aggregate().match({
       time: dbCmd.lt(params.lastTime || Date.now())
-    }).project({_id:0,contactWay:0}).sort({time:-1}).limit(length).end()
+    }).project({
+      _id: 0,
+      contactWay: 0
+    }).sort({
+      time: -1
+    }).limit(length).end()
     if (dataRes.data && dataRes.data.length > 0) {
 
-    let  hasMoreData = await db.collection('feedback').where({
+      let hasMoreData = await db.collection('feedback').where({
         time: dbCmd.lt(dataRes.data[dataRes.data.length - 1].time)
       }).count()
-      hasMore=hasMoreData.total>0
+      hasMore = hasMoreData.total > 0
     }
   } else {
     res.msg = "未知操作"
   }
 
-  return { data:dataRes.data,
+  return {
+    data: dataRes.data,
     hasMore,
     // params,
     code: 0

@@ -1,11 +1,12 @@
 {
-    "name" : "queue",
+    "name" : "queue-progress",
     "appid" : "__UNI__81D851E",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
+        "usingComponents" : true,
         "nvueCompiler" : "uni-app",
         "compilerVersion" : 3,
         "modules" : {
@@ -54,6 +55,7 @@
     },
     "quickapp" : {},
     "mp-weixin" : {
+        "usingComponents" : true,
         "appid" : "",
         "setting" : {
             "urlCheck" : false,

@@ -4,6 +4,7 @@
     @longtap.stop="longtap"
     @tap.stop="tap"
     :data-queueId="item.queueId"
+    v-if="!isDeleted"
   >
     <view class="first-line">
       <view class="queue-id"><text v-text="item.queueId" /></view>
@@ -95,8 +96,8 @@
 
     <tui-actionsheet
       :show="showActionSheet"
-      :item-list="itemList"
-      @click="itemTap"
+      :item-list="getActionSheet()"
+      @click="actionSheetTap"
       @cancel="closeActionSheet"
     ></tui-actionsheet>
 
@@ -156,6 +157,7 @@ export default {
   },
   data() {
     return {
+      isDeleted: false,
       item: { joinCondition: {} },
       showPrompt: false,
       promptText: '',
@@ -188,12 +190,6 @@ export default {
       showModal: false,
       showActionSheet: false,
       reportReason: '',
-      itemList: [
-        {
-          text: '举报',
-          color: '#1a1a1a',
-        },
-      ],
       isWatched: this.queueItem.isWatched,
       isJoined: this.queueItem.isJoined,
     };
@@ -282,7 +278,8 @@ export default {
             type: 'ADD',
             token: that.$store.state.user.token,
             watchNotifyNumber: that.watchNotifyNumber,
-            clientId,sendable
+            clientId,
+            sendable,
           },
         })
         .then(res => {
@@ -373,7 +370,7 @@ export default {
     addJoin(sendable) {
       let that = this;
       if (that.isInfo && that.item.joinCondition.type !== 'NO')
-        return that.$emit('confirm', _cost);
+        return that.$emit('confirm', that.joinNotifyNumber);
       that.joinAddButton.loading = true;
       let clientId;
       try {
@@ -516,21 +513,48 @@ export default {
         });
     },
     longtap(e) {
-      //console.log('long', e);
       this.showActionSheet = true;
     },
     closeActionSheet() {
-      //console.log(9);
       this.showActionSheet = false;
-      // return false;
     },
-    itemTap(e) {
-      //console.log('itemTap', e);
-      if (e.index === 0) {
+    actionSheetTap(e) {
+      let that = this;
+      if (e.value === 'report') {
         this.selectReport();
+      } else if (e.value === 'delete') {
+        uni.showModal({
+          content: '是否确认删除该队列？',
+          success(res) {
+            if (res.confirm) {
+              uni.showLoading({ title: '加载中' });
+              uniCloud
+                .callFunction({
+                  name: 'changeQueueState',
+                  data: {
+                    queueId: parseInt(that.item.queueId),
+                    userId: that.$store.state.user.userId,
+                    token: that.$store.state.user.token,
+                    state: 'DELETED',
+                  },
+                })
+                .then(res => {
+                  uni.hideLoading();
+                  if (res.result.code === 0) {
+                    uni.showToast({
+                      title:"操作成功"
+                    })
+                    that.isDeleted = true;
+                  }
+                });
+            }
+          },
+        });
       }
+
       this.closeActionSheet();
       // return false;
+      // }
     },
 
     onConfirm(e) {
@@ -606,7 +630,8 @@ export default {
                   uni.showModal({
                     content: '授权失败，请设为允许或进入小程序查看进度',
                     showCancel: false,
-                  }); if (type === 'WATCH') that.addWatch(false);
+                  });
+                  if (type === 'WATCH') that.addWatch(false);
                   else that.addJoin(false);
                 }
               },
@@ -620,6 +645,26 @@ export default {
     },
     promptInput(e) {
       // console.log(e);
+    },
+    getActionSheet() {
+      let   actionSheet = [];
+      if (this.isCreator) {
+        // actionSheet = JSON.parse(JSON.stringify(this.ActionSheetList));
+        actionSheet=[{
+          text: '删除',
+          color:"#dd524d",value:"delete"
+        }];
+      }
+      else{
+          actionSheet= [
+          {
+            text: '举报',
+            color: '#1a1a1a',value:"report"
+          },
+        ]
+      }
+      // console.log(777,actionSheet)
+      return actionSheet;
     },
   },
 };

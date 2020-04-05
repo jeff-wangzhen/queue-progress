@@ -2,8 +2,7 @@ const {
   validate
 } = require('../../utils/validate.js')
 const {
-  wxConfig,
-  uniappConfig
+  wxConfig
 } = require('../../utils/constants.js')
 const db = uniCloud.database();
 const dbCmd = db.command

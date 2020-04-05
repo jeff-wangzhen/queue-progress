@@ -126,7 +126,7 @@ export default {
           uni.navigateBack();
         })
         .catch(err => {
-          //console.log(err);
+          // console.log(err);
           uni.hideLoading();
           uni.showModal({
             content: '登录失败，' + err.message,

@@ -21,6 +21,7 @@
             hover-class="tui-actionsheet-hover"
             :hover-stay-time="150"
             :data-index="index"
+            :data-value="item.value"
             :style="{ color: item.color || '#1a1a1a' }"
             @tap.stop="handleClickItem"
           >
@@ -99,13 +100,8 @@ export default {
       this.handleClickCancel();
     },
     handleClickItem(e) {
-      //console.log("1", e,this.show);
-      // if (!this.show) return;
-      //console.log(34543543545)
       const dataset = e.currentTarget.dataset;
-      this.$emit('click', {
-        index: parseInt(dataset.index, 10),
-      });
+      this.$emit('click', dataset);
     },
     handleClickCancel() {
       this.$emit('cancel');

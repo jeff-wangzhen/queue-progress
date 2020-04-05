@@ -22,7 +22,7 @@
         />
         <button
           class="commitButton "
-          :class="commentContent.length > 0 ? 'sendable' : ''"
+          :class="commentContent.trim().length > 0 ? 'sendable' : ''"
           formType="submit"
         >
           提交
@@ -165,7 +165,13 @@ export default {
       //这里定义你自己要请求添加留言接口带的值，我是从接口获取到了
       // var created_user_id = this.created_user_id;
       var content = this.commentContent;
-      // var nickname = this.nickname;
+      if (content.trim() === '') {
+        uni.showToast({
+          title: '请输入内容',
+          icon: 'none',
+        });
+        return false;
+      }
       var commentsList = this.commentsList;
 
       this.submitting = true;
@@ -199,6 +205,7 @@ export default {
               icon: 'success',
               title: '留言成功',
             });
+            that.commentsList = '';
             //这是重点，意思是动态添加，使用unshift就插在前面，也可以用push
             that.commentsList.total += 1;
             that.commentsList.unshift(data);

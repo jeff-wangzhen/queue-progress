@@ -56,7 +56,7 @@ async function signUp(event) {
     }
   }
 
-  return {
+  return {userUpdateResult,
     status: -1,
     msg: '登录失败'
   }

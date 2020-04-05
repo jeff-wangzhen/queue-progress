@@ -12,7 +12,7 @@
         >
           <tui-list-cell padding="0" :line-left="false" :arrow="true">
             <view class="tui-list-cell tui-info-box">
-              <view v-if="!logined" @tap.stop="">
+              <view v-if="!logined" catchtap="" @tap.stop="stopTap">
                 <!-- #ifndef MP-WEIXIN -->
                 <navigator
                   url="/pages/user/login"
@@ -26,8 +26,9 @@
                 <!-- #ifdef MP-WEIXIN -->
                 <button
                   type="primary"
+                  @tap.stop="stopTap"
                   open-type="getUserInfo"
-                  @getuserinfo="wxGetUserInfo"
+                  @getuserinfo.stop="wxGetUserInfo"
                   withCredentials="true"
                 >
                   登录
@@ -249,6 +250,7 @@ export default {
       }
       //console.log(44444, url);
     },
+    stopTap(e) {},
   },
 };
 </script>

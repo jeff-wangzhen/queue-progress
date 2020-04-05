@@ -131,9 +131,7 @@ export default {
       this.setItemList('BOTTOM');
     },
     search() {
-      if (this.keyword === '') return this.setItemList('TOP'); //console.log('keyword ',this.keyword);
-      // this.$getQueueList({ keyword:this.keyword }).then(res => {
-
+      if (this.keyword === '') return this.setItemList('TOP');
       const url = '../search-result/search-result?keyword=' + this.keyword;
       if (this.scrollTopProp === -1) {
         uni.redirectTo({
@@ -217,7 +215,7 @@ export default {
 .container {
   background-color: #fff;
 }
-.item-card {
+.item-card {border-radius:30rpx;
   margin: 20rpx 0;
   background-color: rgb(245, 245, 245);
 }
