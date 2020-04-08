@@ -264,43 +264,50 @@ export default {
     },
     ChooseImage() {
       let that = this
+
       uni.chooseImage({
-        count: 4, //默认9
-        sizeType: ["original", "compressed"], //可以指定是原图还是压缩图，默认二者都有
-        sourceType: ["album"], //从相册选择
-        success: (res) => {
-          uni.showLoading({
-            title: '加载中'
+          count: 4, //默认9
+          sizeType: ["original", "compressed"], //可以指定是原图还是压缩图，默认二者都有
+          sourceType: ["album"], //从相册选择
+          success: (res) => {
+            uni.showLoading({
+              title: '加载中'
+            });
+            try {
+              uniCloud.uploadFile({
+                filePath: res.tempFilePaths[0],
+                success: (res) => {
+                  //保存图片的路径
+                  that.imgList.push(res.fileID);
+                  uni.showToast({
+                    title: '上传成功！',
+                    icon: 'success'
+                  });
+                },
+                fail: (err) => {
+                  //console.log(typeof err,err); 
+
+                  uni.showToast({
+                    title: "上传失败",
+                    icon: 'none'
+                  });
+                },
+                complete: () => {
+                  uni.hideLoading()
+                }
+              })
+               }catch (e) {
+                uni.hideLoading()
+                uni.showToast({
+                  title: "失败",
+                  icon: 'none'
+                })
+
+                console.log(e)
+              }
+            },
           });
-          uniCloud.uploadFile({
-            filePath: res.tempFilePaths[0],
-            success: (res) => {
-              //保存图片的路径
-              that.imgList.push(res.fileID);
-              uni.showToast({
-                title: '上传成功！',
-                icon: 'success'
-              });
-            },
-            fail: (err) => {
-              //console.log(typeof err,err); 
-
-              uni.showToast({
-                title: "上传失败",
-                icon: 'none'
-              });
-            },
-            complete: () => {
-              uni.hideLoading()
-
-
-
-            }
-          })
-
-
-        },
-      });
+     
     },
     ViewImage(e) {
       uni.previewImage({

@@ -24,7 +24,7 @@ async function main(params) {
       fromId: "SYSTEM",
       toId: queue.data[0].creatorId,
       content: params.name + " 申请加入队列 " + queue.data[0].title,
-      href: "/check/check?answerId=" + res.id,
+      href: "/pages/check/check?answerId=" + res.id,
       time: Date.now()
     })
     return {
