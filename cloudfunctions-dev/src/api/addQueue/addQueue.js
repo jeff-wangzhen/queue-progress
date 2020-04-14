@@ -59,7 +59,8 @@ async function main(params) {
         queueId: time,
         type: 'INIT',
         time
-      }) //.then((res,rej)=>{ uniCloud.logger.log('11no error', res)}).catch((res,rej)=>{ uniCloud.logger.log('error', res,rej)})
+      }) 
+      //.then((res,rej)=>{ uniCloud.logger.log('11no error', res)}).catch((res,rej)=>{ uniCloud.logger.log('error', res,rej)})
       // } catch (e) {
       //   uniCloud.logger.log('error', e)
       // }

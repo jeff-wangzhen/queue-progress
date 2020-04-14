@@ -2,6 +2,7 @@
 
 - 云函数的使用说明在 cloudfunctions-dev 文件夹中。
 - 如要要运行到微信小程序，需要有 appID 和 appSecret，配置 cloudfunctions-dev/src/utils/constants.js 里的内容，否则无法授权登录。
+- wx-cloudfunctions 文件夹里的代码是微信云开发的一个云函数，这个函数就是用来发送服务通知的，在 cloudfunctions-dev/src/api/joinQueue/joinQueue.js 里调用。之所以不直接通过http调用是考虑到可能会发送很多通知，频繁发出http请求会增加unicloud云函数耗时，容易超过5秒运行时间的限制，而微信云开发同样有限制，却是避无可避。
 - 微信小程序提交审核没有通过，说本程序涉及信息发布内容，个人版小程序无法发布，十分遗憾。
 
 &emsp;&emsp;[H5 版打包成品](https://kill370354.github.io/queue-progress/)（与小程序相比，不能微信通知，也无法上传图片，我也不知道为什么，开发版就可以传图）
@@ -18,4 +19,4 @@
 &emsp;&emsp;本希望做得尽善尽美，给大学四年的学习画上一个圆满的句号。奈何世事难料，我在寒假期间经历了诸多波折，心绪不宁，又限于才力，只得如此了。  
 &emsp;&emsp;倘若有幸得诸位认可，心存感激，将来得空，可能继续完善。
 
-<p align="right">2020 年 4 月初</p>
+<p align="right">2020 年 4 月</p>
