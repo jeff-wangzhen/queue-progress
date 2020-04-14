@@ -46,6 +46,7 @@ export default {
       joinId: '',
       loadProgressValue: 0,
       questions: [],
+      joinNotifyNumber: 0,
     };
   },
   computed: {
@@ -96,6 +97,7 @@ export default {
           that.queueId = res.result.data[0].queueId;
           that.state = res.result.data[0].state;
           that.loadProgressValue = 100;
+          that.joinNotifyNumber = res.result.data[0].joinNotifyNumber;
           //console.log(that.questions, that.state === 'REJECTED');
         });
     },
@@ -106,13 +108,14 @@ export default {
         .callFunction({
           name: 'joinQueue',
           data: {
-            answerId: this.answerId,
-            queueId: this.queueId,
-            userId: this.$store.state.user.userId,
-            token: this.$store.state.user.token,
-            joinId: this.joinId,
+            answerId: that.answerId,
+            queueId: that.queueId,
+            userId: that.$store.state.user.userId,
+            token: that.$store.state.user.token,
+            joinId: that.joinId,
             decision: 'OK',
             type: 'ADD',
+            joinNotifyNumber: that.joinNotifyNumber,
           },
         })
         .then(res => {
