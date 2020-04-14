@@ -542,8 +542,8 @@ export default {
                   uni.hideLoading();
                   if (res.result.code === 0) {
                     uni.showToast({
-                      title:"操作成功"
-                    })
+                      title: '操作成功',
+                    });
                     that.isDeleted = true;
                   }
                 });
@@ -600,45 +600,43 @@ export default {
     },
     subscribe(type) {
       let that = this;
-      wx.getSetting({
-        withSubscriptions: true,
+      // wx.getSetting({
+      //   withSubscriptions: true,
+      //   success(res) {
+      // if (
+      //   res.subscriptionsSetting &&
+      //   res.subscriptionsSetting.itemSettings &&
+      //   res.subscriptionsSetting.itemSettings
+      //     .WXR393UHeqYRLpWstLPH73Yoj9yPtunFx76tt9AYb7Y === 'accept'
+      // ) {
+      //   console.log('已经授权');
+      //   if (type === 'WATCH') that.addWatch(true);
+      //   else that.addJoin(true);
+      // } else {
+      wx.requestSubscribeMessage({
+        tmplIds: ['WXR393UHeqYRLpWstLPH73Yoj9yPtunFx76tt9AYb7Y'],
         success(res) {
-          if (
-            res.subscriptionsSetting &&
-            res.subscriptionsSetting.itemSettings &&
-            res.subscriptionsSetting.itemSettings
-              .WXR393UHeqYRLpWstLPH73Yoj9yPtunFx76tt9AYb7Y === 'accept'
-          ) {
-            console.log('已经授权');
+          // console.log(res);
+          if (res.WXR393UHeqYRLpWstLPH73Yoj9yPtunFx76tt9AYb7Y === 'accept') {
+            uni.showToast({
+              title: '订阅成功',
+            });
+            console.log('订阅成功');
             if (type === 'WATCH') that.addWatch(true);
             else that.addJoin(true);
           } else {
-            wx.requestSubscribeMessage({
-              tmplIds: ['WXR393UHeqYRLpWstLPH73Yoj9yPtunFx76tt9AYb7Y'],
-              success(res) {
-                // console.log(res);
-                if (
-                  res.WXR393UHeqYRLpWstLPH73Yoj9yPtunFx76tt9AYb7Y === 'accept'
-                ) {
-                  uni.showToast({
-                    title: '订阅成功',
-                  });
-                  console.log('订阅成功');
-                  if (type === 'WATCH') that.addWatch(true);
-                  else that.addJoin(true);
-                } else {
-                  uni.showModal({
-                    content: '授权失败，请设为允许或进入小程序查看进度',
-                    showCancel: false,
-                  });
-                  if (type === 'WATCH') that.addWatch(false);
-                  else that.addJoin(false);
-                }
-              },
+            uni.showModal({
+              content: '授权失败，请设为允许或进入小程序查看进度',
+              showCancel: false,
             });
+            if (type === 'WATCH') that.addWatch(false);
+            else that.addJoin(false);
           }
         },
       });
+      // }
+      //   },
+      // });
     },
     onCancel() {
       this.showPrompt = false;
@@ -647,21 +645,24 @@ export default {
       // console.log(e);
     },
     getActionSheet() {
-      let   actionSheet = [];
+      let actionSheet = [];
       if (this.isCreator) {
         // actionSheet = JSON.parse(JSON.stringify(this.ActionSheetList));
-        actionSheet=[{
-          text: '删除',
-          color:"#dd524d",value:"delete"
-        }];
-      }
-      else{
-          actionSheet= [
+        actionSheet = [
+          {
+            text: '删除',
+            color: '#dd524d',
+            value: 'delete',
+          },
+        ];
+      } else {
+        actionSheet = [
           {
             text: '举报',
-            color: '#1a1a1a',value:"report"
+            color: '#1a1a1a',
+            value: 'report',
           },
-        ]
+        ];
       }
       // console.log(777,actionSheet)
       return actionSheet;

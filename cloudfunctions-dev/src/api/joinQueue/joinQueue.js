@@ -42,6 +42,8 @@ async function joinQueue(params, queue, wxCloud) {
     state: 'IN',
     time: nowTime
   })
+
+  uniCloud.logger.log('1111', params)
   if (!res.updated) {
     res = await db.collection('join').add({
       userId: params.joinId || params.userId,
@@ -116,7 +118,7 @@ async function joinQueue(params, queue, wxCloud) {
       }]
 
     } else {
-      uniCloud.logger.log(params)
+
       messages = [{
         fromId: 'SYSTEM',
         toId: queue.creatorId,
@@ -145,12 +147,13 @@ async function joinQueue(params, queue, wxCloud) {
     let notifyUser = watchUser
     if (params.joinNotifyNumber === joinedUserNum.data[0].userId) {
       notifyUser.data.unshift({
-        openid: joinUser.data[0].openid,
+        openid: [joinUser.data[0].openid],
         userId: params.joinId || params.userId,
         joinNotifyNumber: params.joinNotifyNumber,
-        sendable: params.sendable
+        sendable: params.sendable === undefined ? true : params.sendable
       })
     }
+    uniCloud.logger.log(222, notifyUser.data)
     let notifyRes = await notify(notifyUser.data, joinedUserNum.data[0] && joinedUserNum.data[0].userId || 0, queue.title,
       queue.queueId, wxCloud)
     return { ...res,
@@ -416,9 +419,7 @@ async function notify(notifyUser, joinNumber, title, queueId, wxCloud) {
       })
 
 
-    uniCloud.logger.log(8888888888888888888888, wxJoinNotifyUser,
-      wxWatchNotifyUser,
-      notifyUser)
+    uniCloud.logger.log(8888888888888888888888, res)
 
   }
   wxCloud = {

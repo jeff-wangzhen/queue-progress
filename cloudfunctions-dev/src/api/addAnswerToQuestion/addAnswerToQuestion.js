@@ -14,7 +14,8 @@ async function main(params) {
     userId: params.userId,
     queueId: params.queueId,
     answers: params.answers,
-    state: 'PENDING'
+    state: 'PENDING',
+    joinNotifyNumber: params.joinNotifyNumber
   })
   if (res.id) {
     let queue = await db.collection('queue').where({
